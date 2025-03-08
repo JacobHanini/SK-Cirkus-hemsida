@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>SK Cirkus</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        header {
+            background: #000;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header img {
+            max-width: 85px;
+            margin-left: 20px;
+        }
+
+        header h1 {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .slide {
+            display: none;
+            text-align: center;
+        }
+
+        .slide img {
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        .slide-text {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .prev { left: 0; }
+        .next { right: 0; }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="cirkuslogotyp.png" alt="SK Cirkus Logga">
+        <h1>Välkommen till SK Cirkus</h1>
+        <nav>
+            <ul>
+                <li><a href="https://labb.vgy.se/~simlin24/cirkusabout">Om oss</a></li>
+                <li><a href="https://labb.vgy.se/~simlin24/cirkusevent">Event</a></li>
+                <li><a href="https://labb.vgy.se/~simlin24/cirkuskontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="about">
+            <h2>Om oss</h2>
+            <p>SK Cirkus är en nybildad schackklubb som skapades av ett antal drivna juniorer med en vision</p>
+        </section>
+        
+        <section id="slideshow">
+            <h2>Våra Spelare</h2>
+            <div class="slideshow-container">
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                
+                <div class="slide">
+                    <img src="filip.jpg" alt="Filip Dingertz">
+                    <div class="slide-text">Filip Dingertz</div>
+                </div>
+
+                <div class="slide">
+                    <img src="jacob.jpg" alt="Jacob Hanini">
+                    <div class="slide-text">Jacob Hanini</div>
+                </div>
+
+                <div class="slide">
+                    <img src="lo.jpg" alt="Lo Ljungros">
+                    <div class="slide-text">Lo Ljungros</div>
+                </div>
+
+                <div class="slide">
+                    <img src="jakob.jpg" alt="Jakob Fahlman">
+                    <div class="slide-text">Jakob Fahlman</div>
+                </div>
+
+                <div class="slide">
+                    <img src="simon.jpg" alt="Simon Lindström">
+                    <div class="slide-text">Simon Lindström</div>
+                </div>
+
+                <div class="slide">
+                    <img src="gustav.jpg" alt="Gustav Dingertz">
+                    <div class="slide-text">Gustav Dingertz</div>
+                </div>
+
+                <div class="slide">
+                    <img src="melvin.jpg" alt="Melvin Ral Lustig">
+                    <div class="slide-text">Melvin Ral Lustig</div>
+                </div>
+
+                <div class="slide">
+                    <img src="erik.jpg" alt="Erik Dingertz">
+                    <div class="slide-text">Erik Dingertz</div>
+                </div>
+
+                <div class="slide">
+                    <img src="herman.jpg" alt="Herman Enholm">
+                    <div class="slide-text">Herman Enholm</div>
+                </div>
+
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+        </section>
+        
+        
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 SK Cirkus. All rights reserved. Ansvarig utgivare Jacob Hanini</p>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+            if (n >= slides.length) { slideIndex = 0; }
+            if (n < 0) { slideIndex = slides.length - 1; }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex].style.display = "block";
+        }
+    </script>
+</body>
+</html>
