@@ -13,12 +13,12 @@
             flex-direction: column;
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #000; /* Black background */
-            color: #fff; /* White text */
+            background-color: #000;
+            color: #fff;
         }
 
         header {
-            background: #000; /* Black background */
+            background: #000;
             color: white;
             padding: 15px;
             display: flex;
@@ -55,7 +55,44 @@
         main {
             flex-grow: 1;
             padding: 20px;
-            background-color: #111; /* Dark background for main content */
+            background-color: #111;
+        }
+
+        #about h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            animation: bounce 1.5s ease-in-out, colorChange 3s infinite alternate;
+        }
+
+        #about p {
+            font-size: 18px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid white;
+            width: 0;
+            display: inline-block;
+            animation: typing 3s steps(50, end) forwards, blink 0.7s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(-20px); opacity: 0; }
+            50% { transform: translateY(10px); opacity: 1; }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes colorChange {
+            0% { color: #ff0000; }
+            50% { color: #00ff00; }
+            100% { color: #0000ff; }
         }
 
         .slideshow-container {
@@ -76,7 +113,7 @@
 
         .slide-text {
             font-size: 18px;
-            color: #fff; /* White text for slide captions */
+            color: #fff;
             margin-top: 10px;
         }
 
@@ -94,13 +131,6 @@
 
         .prev { left: 0; }
         .next { right: 0; }
-
-        footer {
-            background: #000; /* Black footer background */
-            color: white;
-            padding: 10px;
-            width: 100%;
-        }
     </style>
 </head>
 <body>
@@ -118,10 +148,10 @@
     
     <main>
         <section id="about">
-            <h2>Om oss</h2>
-            <p>SK Cirkus är en nybildad schackklubb som skapades av ett antal drivna juniorer med en vision</p>
+            <h2>SK CIRKUS</h2>
+            <p id="about-text"></p>
         </section>
-        
+
         <section id="slideshow">
             <h2>Våra Spelare</h2>
             <div class="slideshow-container">
@@ -176,7 +206,6 @@
             </div>
         </section>
         
-        
     </main>
     
     <footer>
@@ -184,6 +213,17 @@
     </footer>
 
     <script>
+        const text = "SK Cirkus är en nybildad schackklubb som skapades av ett antal drivna juniorer med en vision. Läs mer om oss i om oss sidan.";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("about-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        window.onload = typeWriter;
+
         let slideIndex = 0;
         showSlides(slideIndex);
 
