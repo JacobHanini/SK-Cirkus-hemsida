@@ -1,245 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <title>SK Cirkus</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #000;
-            color: #fff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SK Cirkus - </title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #f5c518;
+      --background: #0f0f0f;
+      --card-bg: #1c1c1c;
+      --text-color: #ffffff;
+    }
 
-        header {
-            background: #000;
-            color: white;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        header img {
-            max-width: 85px;
-            margin-left: 20px;
-        }
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--background);
+      color: var(--text-color);
+      scroll-behavior: smooth;
+    }
+header::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3p5Z3l5andhZDJkYm5oMnQyMHd0dDJ0OTB2NHZ1aWZla2x1OWlvdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WrUOlEoYhJ6wog4hCJ/giphy.gif') no-repeat center center/cover;
+  opacity: 0.15;
+  z-index: 0;
+}
 
-        header h1 {
-            flex-grow: 1;
-            text-align: center;
-            margin: 0;
-        }
+    nav {
+      background: #1a1a1a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
+    nav img {
+      height: 50px;
+    }
 
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-        }
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        main {
-            flex-grow: 1;
-            padding: 20px;
-            background-color: #111;
-        }
+    nav a:hover {
+      color: var(--primary);
+    }
 
-        #about h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            animation: bounce 1.5s ease-in-out, colorChange 3s infinite alternate;
-        }
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background: radial-gradient(circle, #1a1a1a, #0f0f0f);
+    }
 
-        #about p {
-            font-size: 18px;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid white;
-            width: 0;
-            display: inline-block;
-            animation: typing 3s steps(50, end) forwards, blink 0.7s infinite;
-        }
+    header img {
+      width: 160px;
+      margin-bottom: 1.5rem;
+    }
 
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
+    h1 {
+      font-size: 4rem;
+      color: var(--primary);
+    }
 
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
+    .tagline {
+      font-size: 1.8rem;
+      color: #ccc;
+      margin-top: 0.5rem;
+      letter-spacing: 2px;
+    }
 
-        @keyframes bounce {
-            0% { transform: translateY(-20px); opacity: 0; }
-            50% { transform: translateY(10px); opacity: 1; }
-            100% { transform: translateY(0); }
-        }
+    section {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
 
-        @keyframes colorChange {
-            0% { color: #ff0000; }
-            50% { color: #00ff00; }
-            100% { color: #0000ff; }
-        }
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(60px);
+    }
 
-        .slideshow-container {
-            position: relative;
-            max-width: 500px;
-            margin: auto;
-        }
+    .card i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
 
-        .slide {
-            display: none;
-            text-align: center;
-        }
+    .card h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
 
-        .slide img {
-            width: 50%;
-            border-radius: 10px;
-        }
+    .card p, .card a {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ddd;
+    }
 
-        .slide-text {
-            font-size: 18px;
-            color: #fff;
-            margin-top: 10px;
-        }
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
 
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+    }
 
-        .prev { left: 0; }
-        .next { right: 0; }
-    </style>
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #101010;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    .join-button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: var(--primary);
+  color: #000;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(245, 197, 24, 0.4);
+}
+
+.join-button:hover {
+  background-color: #b4930f;
+  transform: translateY(-2px);
+}
+
+  </style>
 </head>
 <body>
-    <header>
-        <img src="cirkuslogotyp.png" alt="SK Cirkus Logga">
-        <h1>Välkommen till SK Cirkus</h1>
-        <nav>
-            <ul>
-                <li><a href="omoss.html">Om oss</a></li>
-                <li><a href="nyheter.html">Nyheter</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <section id="about">
-            <h2>SK CIRKUS</h2>
-            <p id="about-text"></p>
-        </section>
+  <nav>
+    <img src="cirkuslogotyp.png" alt="SK Cirkus Logo">
+    <ul>
+      <li><a href="#about">Om oss</a></li>
+      <li><a href="#join">Gå med</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+  </nav>
 
-        <section id="slideshow">
-            <h2>Våra Spelare</h2>
-            <div class="slideshow-container">
-                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-                
-                <div class="slide">
-                    <img src="Filip (1).jpg" alt="Filip Dingertz">
-                    <div class="slide-text">Filip Dingertz: Foto Lars OA Hedlund</div>
-                </div>
+  <header>
+    <img src="cirkuslogotyp.png" alt="SK Cirkus Logo">
+    <h1>SK Cirkus</h1>
+    <p class="tagline">"Välkommen till cirkustältet!"</p>
+  </header>
 
-                <div class="slide">
-                    <img src="JacobAnv (1).jpg" alt="Jacob Hanini">
-                    <div class="slide-text">Jacob Hanini</div>
-                </div>
+  <section id="about">
+    <div class="card">
+      <i class="fas fa-chess"></i>
+      <h2>Om oss</h2>
+      <p>SK Cirkus är en nyskapad schackklubb. Våra medlemmar är några av landets starkaste juniorer </p>
+    </div>
 
-                <div class="slide">
-                    <img src="Lo (1).jpg" alt="Lo Ljungros">
-                    <div class="slide-text">Lo Ljungros: Foto Lars OA Hedlund</div>
-                </div>
+    <div class="card" id="join">
+        <i class="fas fa-users"></i>
+        <h2>Gå med cirkusen</h2>
+        <p>Vill du gå med i SK Cirkus? Då har du kommit till rätt ställe. Skicka oss ett intressemail!</p>
+        <a href="mailto:schackklubb.cirkus@gmail.com" class="join-button">Gå med!</a>
+      </div>
+      
 
-                <div class="slide">
-                    <img src="Fahlman (1).jpg" alt="Jakob Fahlman">
-                    <div class="slide-text">Jakob Fahlman: Foto Lars OA Hedlund</div>
-                </div>
+    <div class="card" id="contact">
+      <i class="fas fa-envelope"></i>
+      <h2>Kontakt</h2>
+      <p>Email oss <a href="mailto:schackklubb.cirkus@gmail.com">schackklubb.cirkus@gmail.com</a> eller följ oss på Instagram @skcirkus</p>
+    </div>
+  </section>
 
-                <div class="slide">
-                    <img src="Simon (1).jpg" alt="Simon Lindström">
-                    <div class="slide-text">Simon Lindström:Foto Lars OA Hedlund </div>
-                </div>
+  <footer>
+    <p>&copy; 2025 SK Cirkus. Ansvarig utgivare Jacob Hanini.</p>
+  </footer>
 
-                <div class="slide">
-                    <img src="Gustav (1).jpg" alt="Gustav Dingertz">
-                    <div class="slide-text">Gustav Dingertz:Foto Lars OA Hedlund</div>
-                </div>
-
-                <div class="slide">
-                    <img src="Melvin (1).jpg" alt="Melvin Ral Lustig">
-                    <div class="slide-text">Melvin Ral Lustig:Foto:Lars OA Hedlund</div>
-                </div>
-
-                <div class="slide">
-                    <img src="Erik (1).jpg" alt="Erik Dingertz">
-                    <div class="slide-text">Erik Dingertz:Foto Lars OA Hedlund</div>
-                </div>
-
-                <div class="slide">
-                    <img src="Herman (1).jpg" alt="Herman Enholm">
-                    <div class="slide-text">Herman Enholm:Foto Lars OA Hedlund</div>
-                </div>
-
-                <button class="next" onclick="changeSlide(1)">&#10095;</button>
-            </div>
-        </section>
-        
-    </main>
-    
-    <footer>
-        <p>&copy; 2025 SK Cirkus. All rights reserved. Ansvarig utgivare Jacob Hanini</p>
-    </footer>
-
-    <script>
-        const text = "SK Cirkus är en nybildad schackklubb. ";
-        let i = 0;
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("about-text").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          entry.target.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
         }
-        window.onload = typeWriter;
+      });
+    }, {
+      threshold: 0.1
+    });
 
-        let slideIndex = 0;
-        showSlides(slideIndex);
-
-        function changeSlide(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function showSlides(n) {
-            let slides = document.getElementsByClassName("slide");
-            if (n >= slides.length) { slideIndex = 0; }
-            if (n < 0) { slideIndex = slides.length - 1; }
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex].style.display = "block";
-        }
-    </script>
+    cards.forEach(card => observer.observe(card));
+  </script>
 </body>
 </html>
