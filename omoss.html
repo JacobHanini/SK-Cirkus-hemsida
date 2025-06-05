@@ -1,10 +1,10 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <title>Om oss - SK Cirkus</title>
+    <title>SK Cirkus</title>
     <style>
         html, body {
             height: 100%;
@@ -13,12 +13,12 @@
             flex-direction: column;
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #000; /* Black background */
-            color: #fff; /* White text */
+            background-color: #000; 
+            color: #fff; 
         }
 
         header {
-            background: #000; /* Black background */
+            background: #000; 
             color: white;
             padding: 15px;
             display: flex;
@@ -55,31 +55,58 @@
         main {
             flex-grow: 1;
             padding: 20px;
-            background-color: #111; /* Dark background for main content */
+            background-color: #111; 
         }
 
+        .slideshow-container {
+            position: relative;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .slide {
+            display: none;
+            text-align: center;
+        }
+
+        .slide img {
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        .slide-text {
+            font-size: 18px;
+            color: #fff; 
+            margin-top: 10px;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .prev { left: 0; }
+        .next { right: 0; }
+
         footer {
-            background: #000; /* Black footer background */
+            background: #000; 
             color: white;
             padding: 10px;
             width: 100%;
-        }
-
-        h2 {
-            color: #fff; /* White text for headings */
-        }
-
-        .about-text {
-            color: #fff;
-            font-size: 18px;
-            line-height: 1.6;
         }
     </style>
 </head>
 <body>
     <header>
         <img src="cirkuslogotyp.png" alt="SK Cirkus Logga">
-        <h1>Välkommen till SK Cirkus</h1>
+        <h1>Schackklubben Cirkus</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Tillbaka</a></li>
@@ -92,18 +119,91 @@
     <main>
         <section id="about">
             <h2>Om oss</h2>
-            <p class="about-text">SK Cirkus är en nybildad schackklubb som skapades av ett antal drivna juniorer och vårt mål är att expandera våra sofistikerande och seriösa verksamheter. Vi planerar att ha klubbtävlingar, roliga aktiviter och möjligtvis tävla i lagtävlingar.</p>
-            <a href="https://lichess.org/team/sk-cirkus">Gå med i vårat Lichess lag!</a>
+            <p>SK Cirkus är en nybildad schackklubb som skapades 2025 av juniorer för juniorer. Vi planerar att ha klubbtävlingar men också tävla tillsammans i lag! </p>
+        </section>
+        
+        <section id="slideshow">
+            <h2>Våra Spelare</h2>
+            <div class="slideshow-container">
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                
+                <div class="slide">
+                    <img src="Filip (1).jpg" alt="Filip Dingertz">
+                    <div class="slide-text">Filip Dingertz</div>
+                </div>
 
-            <p class="about-text"> Schackklubben Cirkus är en väldigt seriös schackklubb men ibland kan vi låta ett leende förbi. Det roligaste vi vet är när någon clown inte kan 45 drags teori i en bivariant av najdorf, har du ens pluggat Giri?!?!? Jaja alla är välkommna att gå med i klubben det är bara att kontakta någon av SK Cirkus medlemmar och fråga hur man går med så fixar vi det. </p>
-            <h2>Highkey Cirkus (köp merch pls) </h2>
+                <div class="slide">
+                    <img src="JacobAnv (1).jpg" alt="Jacob Hanini">
+                    <div class="slide-text">Jacob Hanini</div>
+                </div>
+
+                <div class="slide">
+                    <img src="Lo (1).jpg" alt="Lo Ljungros">
+                    <div class="slide-text">Lo Ljungros</div>
+                </div>
+
+                <div class="slide">
+                    <img src="Fahlman (1).jpg" alt="Jakob Fahlman">
+                    <div class="slide-text">Jakob Fahlman</div>
+                </div>
+
+                <div class="slide">
+                    <img src="Simon (1).jpg" alt="Simon Lindström">
+                    <div class="slide-text">Simon Lindström</div>
+                </div>
+
+                <div class="slide">
+                    <img src="Gustav (1).jpg" alt="Gustav Dingertz">
+                    <div class="slide-text">Gustav Dingertz</div>
+                </div>
+
+                <div class="slide">
+                    <img src="Melvin (1).jpg" alt="Melvin Ral Lustig">
+                    <div class="slide-text">Melvin Ral Lustig</div>
+                </div>
+
+                <div class="slide">
+                    <img src="Erik (1).jpg" alt="Erik Dingertz">
+                    <div class="slide-text">Erik Dingertz</div>
+                </div>
+
+                <div class="slide">
+                    <img src="Herman (1).jpg" alt="Herman Enholm">
+                    <div class="slide-text">Herman Enholm</div>
+                </div>
+
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            </div>
 
             <img src="Cirkus.jpg" alt="Cirkusen">
         </section>
+
+
+        
+        
     </main>
     
     <footer>
         <p>&copy; 2025 SK Cirkus. All rights reserved. Ansvarig utgivare Jacob Hanini</p>
     </footer>
+
+    <script>
+        let slideIndex = 0;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+            if (n >= slides.length) { slideIndex = 0; }
+            if (n < 0) { slideIndex = slides.length - 1; }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex].style.display = "block";
+        }
+    </script>
 </body>
 </html>
