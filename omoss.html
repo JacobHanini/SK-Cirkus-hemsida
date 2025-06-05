@@ -17,40 +17,54 @@
             color: #fff; 
         }
 
-        header {
-            background: #000; 
-            color: white;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+   header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    background: #000;
+    color: white;
+    padding: 15px 20px;
+}
 
-        header img {
-            max-width: 85px;
-            margin-left: 20px;
-        }
+header img {
+    max-width: 85px;
+}
 
-        header h1 {
-            flex-grow: 1;
-            text-align: center;
-            margin: 0;
-        }
+header h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 1.8em;
+    color: yellow;
+    animation: fadeZoom 2s ease-in-out;
+    padding-left: 100px;
+}
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+}
 
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-        }
+@keyframes fadeZoom {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+
 
         main {
             flex-grow: 1;
@@ -106,7 +120,8 @@
 <body>
     <header>
         <img src="cirkuslogotyp.png" alt="SK Cirkus Logga">
-        <h1>‎ ‎ ‎‎ ‎ ‎‎ ‎ ‎‎ ‎ ‎‎ ‎ ‎‎ ‎ ‎Schackklubben Cirkus</h1>
+        <h1>Schackklubben Cirkus</h1>
+        
         <nav>
             <ul>
                 <li><a href="index.html">Tillbaka</a></li>
@@ -177,10 +192,6 @@
 
             <img src="Cirkus.jpg" alt="Cirkusen">
         </section>
-
-
-        
-        
     </main>
     
     <footer>
