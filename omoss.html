@@ -1,174 +1,480 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>SK Cirkus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #000; 
-            color: #fff; 
+        :root {
+            --black: #0a0a0a;
+            --deep: #111118;
+            --yellow: #f5c518;
+            --yellow-dim: #c9a010;
+            --white: #f0ede6;
+            --muted: #888880;
+            --border: rgba(245, 197, 24, 0.2);
+            --card: #16161e;
         }
 
-   header {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    background: #000;
-    color: white;
-    padding: 15px 20px;
-}
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-header img {
-    max-width: 85px;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-header h1 {
-    text-align: center;
-    margin: 0;
-    font-size: 1.8em;
-    color: yellow;
-    animation: fadeZoom 2s ease-in-out;
-    padding-left: 100px;
-}
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 15px;
-}
+       
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                repeating-conic-gradient(rgba(255,255,255,0.015) 0% 25%, transparent 0% 50%);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-nav a {
-    color: white;
-    text-decoration: none;
-}
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
 
-@keyframes swing {
-  0% { transform: rotate(0deg); }
-  20% { transform: rotate(10deg); }
-  40% { transform: rotate(-10deg); }
-  60% { transform: rotate(8deg); }
-  80% { transform: rotate(-8deg); }
-  100% { transform: rotate(0deg); }
-}
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
 
-header h1 {
-  color: yellow;
-  animation: swing 3s ease-in-out infinite;
-  transform-origin: top center;
-  font-size: 2em;
-}
+        .logo-area img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
 
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--yellow);
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+            animation: pendulum 4s ease-in-out infinite;
+            transform-origin: top center;
+            display: inline-block;
+        }
 
+        @keyframes pendulum {
+            0%, 100% { transform: rotate(0deg); }
+            20%       { transform: rotate(4deg); }
+            60%       { transform: rotate(-4deg); }
+        }
+
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            display: block;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.45rem 0.85rem;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--yellow);
+            border-color: var(--border);
+            background: rgba(245, 197, 24, 0.05);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: clamp(3rem, 10vw, 7rem) 1.5rem clamp(2rem, 6vw, 4rem);
+            gap: 1.25rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            border: 1px solid var(--border);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            background: rgba(245, 197, 24, 0.06);
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(2.4rem, 8vw, 5rem);
+            line-height: 1.05;
+            color: var(--white);
+            animation: fadeUp 0.7s 0.1s ease both;
+        }
+
+        .hero h2 span {
+            color: var(--yellow);
+        }
+
+        .hero-sub {
+            max-width: 560px;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            color: var(--muted);
+            line-height: 1.7;
+            animation: fadeUp 0.8s 0.2s ease both;
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--yellow);
+            border-radius: 2px;
+            animation: fadeUp 0.8s 0.25s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
 
         main {
             flex-grow: 1;
-            padding: 20px;
-            background-color: #111; 
-        }
-
-        .slideshow-container {
             position: relative;
-            max-width: 500px;
-            margin: auto;
+            z-index: 1;
+            padding: 0 1.5rem 4rem;
         }
 
-        .slide {
-            display: none;
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: clamp(1.25rem, 4vw, 2rem);
+            transition: border-color 0.3s, transform 0.3s;
+            animation: fadeUp 0.8s 0.3s ease both;
+        }
+
+        .card:hover {
+            border-color: rgba(245, 197, 24, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .card-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--muted);
+        }
+
+        .card p + p {
+            margin-top: 0.75rem;
+        }
+
+      
+        .roles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .role-tag {
+            background: rgba(245, 197, 24, 0.07);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.5rem 0.85rem;
+            font-size: 0.82rem;
+        }
+
+        .role-tag strong {
+            display: block;
+            color: var(--yellow);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.2rem;
+            font-weight: 500;
+        }
+
+        .role-tag span {
+            color: var(--white);
+            font-weight: 400;
+        }
+
+       
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            min-height: 220px;
+            display: flex;
+            align-items: flex-end;
+            border: 1px solid var(--border);
+            animation: fadeUp 0.8s 0.4s ease both;
+        }
+
+        .photo-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.55) saturate(0.8);
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.04);
+            filter: brightness(0.65) saturate(1);
+        }
+
+        .photo-caption {
+            position: relative;
+            z-index: 2;
+            padding: 1.25rem;
+            font-size: 0.8rem;
+            color: rgba(240, 237, 230, 0.7);
+            letter-spacing: 0.05em;
+        }
+
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            color: var(--yellow);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .cta-link:hover {
+            border-bottom-color: var(--yellow-dim);
+        }
+
+        .cta-link::after {
+            content: '→';
+            transition: transform 0.2s;
+        }
+
+        .cta-link:hover::after {
+            transform: translateX(4px);
+        }
+
+        .chess-pieces {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            opacity: 0.15;
+            filter: grayscale(1);
+        }
+
+     
+        footer {
+            position: relative;
+            z-index: 1;
+            background: var(--black);
+            border-top: 1px solid var(--border);
+            padding: 1.5rem 2rem;
             text-align: center;
         }
 
-        .slide img {
-            width: 50%;
-            border-radius: 10px;
+        footer p {
+            font-size: 0.75rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
         }
 
-        .slide-text {
-            font-size: 18px;
-            color: #fff; 
-            margin-top: 10px;
+        footer p span {
+            color: var(--yellow);
         }
 
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
+        /* ── MOBILE NAV TWEAKS ── */
+        @media (max-width: 480px) {
+            header {
+                padding: 0.85rem 1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
 
-        .prev { left: 0; }
-        .next { right: 0; }
+            nav ul {
+                gap: 0.1rem;
+            }
 
-        footer {
-            background: #000; 
-            color: white;
-            padding: 10px;
-            width: 100%;
+            nav a {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .hero {
+                padding-top: 2.5rem;
+            }
+
+            main {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+
     <header>
-        <img src="cirkuslogotyp.png" alt="SK Cirkus Logga">
-        <h1>Schackklubben Cirkus</h1>
-        
+        <div class="logo-area">
+            <img src="cirkuslogotyp.png" alt="SK Cirkus Logga">
+            <span class="logo-text">SK Cirkus</span>
+        </div>
         <nav>
             <ul>
-                <li><a href="index.html">Tillbaka</a></li>
+                <li><a href="index.html">Hem</a></li>
                 <li><a href="nyheter.html">Nyheter</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
         </nav>
     </header>
-    
+
+    <section class="hero">
+        <div class="chess-pieces" aria-hidden="true">♟ ♞ ♝ ♜ ♛ ♚</div>
+        <span class="hero-badge">Grundad 2025 · Stockholm</span>
+        <h2>Schackklubben<br><span>Cirkus</span></h2>
+        <div class="hero-divider"></div>
+        <p class="hero-sub">En schackklubb skapad av juniorer för juniorer med målet att stärka unga schackspelare i Sverige.</p>
+    </section>
+
     <main>
-        <section id="about">
-            <h2>Om oss</h2>
-            <p>SK Cirkus är en nybildad schackklubb som skapades 2025 av juniorer för juniorer. Vi planerar att ha klubbtävlingar men också arrangera öppna tävlingar. Vi vill också arrangera schackläger och liknande aktiviteter för att stärka svenska juniorer!</p>
-            <p>Klubbens ordförande är Filip Dingertz, vice ordförande är Jacob Hanini och styrelseledamot är Simon Lindström. För att se alla medlemmar i SK Cirkus klicka här: <a href="https://resultat.schack.se/ShowClubRatingServlet?clubid=51911" target="_blank">ELO-Lista</a></p>
-        </section>
-        
-        
-            <img src="Cirkus.jpg" alt="Cirkusen">
-        </section>
+        <div class="content-grid">
+
+           
+            <div class="card full-width">
+                <p class="card-label">Om oss</p>
+                <h3>Vad är SK Cirkus?</h3>
+                <p>SK Cirkus är en nybildad schackklubb som skapades 2025 av juniorer för juniorer. Vi planerar att ha klubbtävlingar men också arrangera öppna tävlingar.</p>
+                <p>Vi vill också arrangera schackläger och liknande aktiviteter för att stärka svenska juniorer!</p>
+                <a href="https://resultat.schack.se/ShowClubRatingServlet?clubid=51911" target="_blank" class="cta-link">Se ELO-lista</a>
+            </div>
+
+      
+            <div class="card">
+                <p class="card-label">Styrelse</p>
+                <h3>Ledning</h3>
+                <div class="roles">
+                    <div class="role-tag">
+                        <strong>Ordförande</strong>
+                        <span>Filip Dingertz</span>
+                    </div>
+                    <div class="role-tag">
+                        <strong>Vice ordförande</strong>
+                        <span>Jacob Hanini</span>
+                    </div>
+                    <div class="role-tag">
+                        <strong>Styrelseledamot</strong>
+                        <span>Simon Lindström</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Cirkus.jpg" alt="SK Cirkus">
+                <span class="photo-caption">SK Cirkus · 2025</span>
+            </div>
+
+        </div>
     </main>
-    
+
     <footer>
-        <p>&copy; 2025 SK Cirkus. All rights reserved. Ansvarig utgivare Jacob Hanini</p>
+        <p>&copy; 2025 SK Cirkus. Alla rättigheter förbehållna. Ansvarig utgivare <span>Jacob Hanini</span></p>
     </footer>
 
-    <script>
-        let slideIndex = 0;
-        showSlides(slideIndex);
-
-        function changeSlide(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function showSlides(n) {
-            let slides = document.getElementsByClassName("slide");
-            if (n >= slides.length) { slideIndex = 0; }
-            if (n < 0) { slideIndex = slides.length - 1; }
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex].style.display = "block";
-        }
-    </script>
 </body>
 </html>
